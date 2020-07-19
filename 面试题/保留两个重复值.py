@@ -1,0 +1,48 @@
+"""
+删除两个重复值（快慢指针）
+思路：通过循环 快指针进行移动 同时判断有几个重复值，当重复值大于2个时从第3个重复值进行替换
+"""
+#导入表
+from typing import List
+#类名：removeDuplicates
+def removeDuplicates(nums: List[int]) -> int:
+    #慢指针 show 初始值为0
+    show = 0
+    #将列表排序
+    nums.sort()
+    #快指针 fast 初始值为1
+    fast=1
+    #计数器count 初始值为1
+    count=1
+    #循环 循环条件快指针小于列表总长
+    while fast<len(nums):
+        #判断慢指针的值和快指针的值是否相等
+        if nums[show]==nums[fast]:
+            #如果计数大于等于2时
+            if count>=2:
+                #快指针下移一步
+                fast+=1
+            #如果不大于计数小于2
+            else:
+                #计数+1
+                count+=1
+                #慢指针下移一步
+                show+=1
+                #把快指针的值赋给慢指针
+                nums[show]=nums[fast]
+                #快指针下移一步
+                fast+=1
+        #慢指针和快指针的值不相等时：
+        else:
+            #计数归为1
+            count=1
+            #慢指针下移一步
+            show+=1
+            #把快指针的值赋给慢指针
+            nums[show]=nums[fast]
+            #快指针下移一步
+            fast+=1
+    #返回有多少个符合条件的值
+    return show+1
+li=removeDuplicates([0,1,0,1,2,3,0,1])
+print(li)

@@ -1,0 +1,22 @@
+"""
+指定值求列表中两数之和（对撞指针）
+思路:左指针为0开始，右指针从列表最后开始，指定值减去右指针值如果大于做指针值 那就左指针下移一步，否则右指针前移一步
+"""
+#定义函数 函数名为twoSum 传入有序列表和指定值
+def twoSum(nums:list,target):
+    #左指针 初始值为0
+    left=0
+    #右指针 初始值为列表总长减1
+    right=len(nums)-1
+    #循环条件 左指针小于右指针
+    while left<right:
+        #如果指定值-右指针>做指针 就说明左指针的值小于最终的结果 所以做指针向下移一步
+        if target-nums[right]>nums[left]:
+            left+=1
+        #否则 说明右边的值过于大 所以让右指针前移一步
+        else:
+            right-=1
+        #判断 左指针的值加右指针的值等于指定值的时
+        if nums[left]+nums[right]==target:
+            #打印左指针和右指针
+            print([left,right])
